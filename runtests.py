@@ -21,19 +21,22 @@ if not settings.configured and not os.environ.get('DJANGO_SETTINGS_MODULE'):
         DEBUG=False,
     )
 
-from django.test.simple import DjangoTestSuiteRunner
+
+from django.test.runner import DiscoverRunner
+from django import setup as django_setup
 
 
 def runtests(*test_args, **kwargs):
-    if 'south' in settings.INSTALLED_APPS:
-        from south.management.commands import patch_for_test_db_setup
-        patch_for_test_db_setup()
-
+    django_setup()
     if not test_args:
         test_args = ['tests']
     parent = dirname(abspath(__file__))
     sys.path.insert(0, parent)
-    test_runner = DjangoTestSuiteRunner(verbosity=kwargs.get('verbosity', 1), interactive=kwargs.get('interactive', False), failfast=kwargs.get('failfast'))
+    test_runner = DiscoverRunner(
+        verbosity=kwargs.get('verbosity', 1),
+        interactive=kwargs.get('interactive', False),
+        failfast=kwargs.get('failfast')
+    )
     failures = test_runner.run_tests(test_args)
     sys.exit(failures)
 

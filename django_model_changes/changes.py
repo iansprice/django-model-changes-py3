@@ -123,7 +123,7 @@ class ChangesMixin(object):
         return self._states[0]
 
     def _changes(self, other, current):
-        return dict([(key, (was, current[key])) for key, was in other.iteritems() if was != current[key]])
+        return dict([(key, (was, current[key])) for key, was in other.items() if was != current[key]])
 
     def changes(self):
         """
