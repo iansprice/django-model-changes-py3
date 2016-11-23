@@ -9,7 +9,7 @@ Quick start
 
 1. Install django-model-changes::
 
-    pip install django-model-changes
+    pip install django-model-changes-py3
 
 2. Add "django_model_changes" to your INSTALLED_APPS setting like this::
 
