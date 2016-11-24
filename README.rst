@@ -1,8 +1,10 @@
-====================
-django-model-changes
-====================
+========================
+django-model-changes-py3
+========================
 
-django-model-changes allows you to track the state and changes of a model instance:
+PYTHON 3 FORK OF `django-model-changes <https://github.com/kajic/django-model-changes/>`_.
+
+*django-model-changes* allows you to track the state and changes of a model instance:
 
 Quick start
 -----------
