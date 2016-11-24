@@ -1,0 +1,12 @@
+.gitignore
+.idea/
+.pypirc
+django_model_changes/__init__.pyc
+django_model_changes/__pycache__/
+django_model_changes/changes.pyc
+django_model_changes/signals.pyc
+django_model_changes_py3.egg-info/
+tests/__init__.pyc
+tests/__pycache__/
+tests/models.pyc
+tests/tests.pyc
