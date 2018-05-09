@@ -30,7 +30,7 @@ setup(
     ],
     test_suite='runtests.runtests',
     tests_require=[
-        'django'
+        'django<2.1'
     ],
-    zip_safe=False,
+    zip_safe=True,
 )
