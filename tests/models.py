@@ -9,4 +9,4 @@ class User(ChangesMixin, models.Model):
 
 class Article(ChangesMixin, models.Model):
     title = models.CharField(max_length=20)
-    user = models.ForeignKey(User)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
