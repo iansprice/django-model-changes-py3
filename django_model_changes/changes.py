@@ -102,11 +102,19 @@ class ChangesMixin(object):
         field_names = set()
         [field_names.add(f.name) for f in self._meta.local_fields]
         [field_names.add(f.attname) for f in self._meta.local_fields]
-        [field_names.add(f.verbose_name) for f in self._meta.local_fields]
         
         return dict([(field_name, getattr(self, field_name, None)) \
                      for field_name in field_names])
 
+    def verbose_names(self):
+        """ Return verbose names for support translations
+        """
+        verbose_names = {}
+        for local_field in self._meta.local_fields:
+            verbose_names.update({local_field.name: local_field.verbose_name})
+            
+        return verbose_names
+    
     def previous_state(self):
         """
         Returns a ``field -> value`` dict of the state of the instance after it
@@ -125,15 +133,19 @@ class ChangesMixin(object):
         """
         return self._states[0]
 
-    def _changes(self, other, current):
+    def _changes(self, other, current, is_with_verbose_names=False):
+        if is_with_verbose_names:
+            verbose_names = self.verbose_names()
+            return dict([(verbose_names[key], (was, current[key])) for key, was in other.items() if was != current[key]])
+
         return dict([(key, (was, current[key])) for key, was in other.items() if was != current[key]])
 
-    def changes(self):
+    def changes(self, is_with_verbose_names=False):
         """
         Returns a ``field -> (previous value, current value)`` dict of changes
         from the previous state to the current state.
         """
-        return self._changes(self.previous_state(), self.current_state())
+        return self._changes(self.previous_state(), self.current_state(), is_with_verbose_names=is_with_verbose_names)
 
     def old_changes(self):
         """
