@@ -147,19 +147,19 @@ class ChangesMixin(object):
         """
         return self._changes(self.previous_state(), self.current_state(), is_with_verbose_names=is_with_verbose_names)
 
-    def old_changes(self):
+    def old_changes(self, is_with_verbose_names=False):
         """
         Returns a ``field -> (previous value, current value)`` dict of changes
         from the old state to the current state.
         """
-        return self._changes(self.old_state(), self.current_state())
+        return self._changes(self.old_state(), self.current_state(), is_with_verbose_names=is_with_verbose_names)
 
-    def previous_changes(self):
+    def previous_changes(self, is_with_verbose_names=False):
         """
         Returns a ``field -> (previous value, current value)`` dict of changes
         from the old state to the previous state.
         """
-        return self._changes(self.old_state(), self.previous_state())
+        return self._changes(self.old_state(), self.previous_state(), is_with_verbose_names=is_with_verbose_names)
 
     def was_persisted(self):
         """
