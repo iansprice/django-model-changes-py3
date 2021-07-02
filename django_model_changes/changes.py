@@ -111,7 +111,7 @@ class ChangesMixin(object):
         """
         verbose_names = {}
         for local_field in self._meta.local_fields:
-            verbose_names.update({local_field.name: local_field.verbose_name})
+            verbose_names.update({local_field.name: str(local_field.verbose_name)})
             
         return verbose_names
     
