@@ -4,6 +4,8 @@ django-model-changes-py3
 
 PYTHON 3 FORK OF `django-model-changes <https://github.com/kajic/django-model-changes/>`_.
 
+I'm looking for someone(s) to take over maintenance of this package. Please get in contact if you have any interest!
+
 *django-model-changes* allows you to track the state and changes of a model instance:
 
 Quick start
